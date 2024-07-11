@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+<!-- Page Heading -->
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage New Users Details</h1>
+   
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    {% include 'includes/messages.html' %}
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Entry ID</th>
+                <th>Name  of User</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Cabin User</th>
+                <th>Entry Date/Entry Time</th>
+                <th>Status</th>
+                <th>Checkout Date/Checkout Time</th>
+                <th>Action</th>
+               
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>S.No</th>
+                <th>Entry ID</th>
+                <th>Name  of User</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Cabin User</th>
+                
+                <th>Entry Date/Entry Time</th>
+                <th>Status</th>
+                <th>Checkout Date/Checkout Time</th>
+                <th>Action</th>
+               
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for i in cyber_user %}
+            {% if i.status == '0' %}
+            
+            <tr>
+                <td>{{ i.id}}</td>
+                <td>{{ i.entryid}}</td>
+                <td>{{ i.name}}</td>
+                <td>{{ i.email}}</td>
+                <td>{{ i.mobilenumber}}</td>
+                <td>{{ i.computeruse_id.compname}}({{ i.computeruse_id.comploc}})</td>
+                <td>{{ i.created_at}}</td>
+                {% if i.status == 'Checkout' %}
+                <td>{{ i.status}}</td>
+                {% else %}               
+                <td>Not Updated Yet</td>{% endif %}
+                <td>{{ i.updated_at}}</td>
+                <td><a href="{% url 'update_user' i.id %}" class="btn btn-success">Update </a><a href="{% url 'delete_user' i.id %}" class="btn btn-danger">Delete</a></td>
+               
+            </tr>{% endif %}{% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Content Row -->
+
+
+
+<!-- Content Row -->
+
+{% endblock %}

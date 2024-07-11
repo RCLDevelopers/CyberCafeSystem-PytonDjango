@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<!-- Page Heading -->
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Admin Profile</h1>
+   
+</div>
+
+<!-- Content Row -->
+<div class="row">
+   
+    <div class="col-xl-10 col-md-12 mb-12">
+        <div class="card border-left-warning shadow h-100 py-10">
+            <div class="card-body">
+                <div>
+                    {% include 'includes/messages.html' %}
+                    <form class="user" method="POST" action="{% url 'profile_update' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">First Name</label>
+                            <input type="text" class="form-control" name="first_name" value="{{user.first_name}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Last Name</label>
+                            <input type="text" class="form-control" name="last_name" value="{{user.last_name}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            <input type="email" class="form-control" readonly="True" name="email" value="{{user.email}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Username</label>
+                            <input type="text" class="form-control" readonly="True" name="username" value="{{user.username}}">
+                        </div>
+                     
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
+                        <hr>
+                   
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

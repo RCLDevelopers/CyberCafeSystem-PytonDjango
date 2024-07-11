@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+<!-- Page Heading -->
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Update Cyber User</h1>
+   
+</div>
+
+<!-- Content Row -->
+<div class="row">
+   
+    <div class="col-xl-10 col-md-12 mb-12">
+        <div class="card border-left-warning shadow h-100 py-10">
+            <div class="card-body">
+                <div>
+                    {% include 'includes/messages.html' %}
+                            
+                                {% for i in user %}
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <tr>
+                                        <th>Entry ID</th>
+                                        <td>{{ i.entryid}}</td>
+                                      </tr>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <td>{{ i.name}}</td>
+                                      </tr>
+                                    
+                                      <tr>
+                                        <th>Email</th>
+                                        <td>{{ i.email}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Mobile Number</th>
+                                        <td>{{ i.mobilenumber}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Address</th>
+                                        <td>{{ i.address}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>ID Proof Number</th>
+                                        <td>{{ i.idproof}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Computer Used</th>
+                                        <td>{{ i.computeruse_id.compname}}</td>
+                                      </tr>
+                                     
+                                      <tr>
+                                        <th>Entry Date/Entring Time</th>
+                                        <td>{{ i.created_at}}</td>
+                                      </tr>
+                                      
+                                
+                                      <tr>
+                                        {% if i.remark == '0' %}
+                                        <th>Remark</th>
+                                        <td>Not Updatet Yet</td>
+                                        {% else %}
+                                        <th>Remark</th>
+                                        <td>{{ i.remark}}</td> {% endif %}
+                            <tr>
+                                <tr>
+                                    {% if i.status == '0' %}
+                                    <th>Staus</th>
+                                    <td>Not Updatet Yet</td>
+                                    {% else %}
+                                    <th>Status</th>
+                                    <td>{{ i.status}}</td> {% endif %}
+                        <tr>
+                                <th>Out Time </th>
+                                <td>{{i.updated_at}}</td>
+                            </tr>
+
+
+
+                            </table>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                
+                                {% if i.status == '0'  %}              
+                                
+                    <form class="user" method="POST" action="{% url 'update_remark' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Remark</label>
+                            <input type="text" name="remark" value="" class="form-control" id="remark" required="true">
+                            <input type="hidden" value="{% for i in user %}{{i.id}}{% endfor %}" name="user_id" id="user_id" class="form-control" required="">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Status</label>
+                           
+                            <input type="text" name="status" value="Checkout" id="status" class="form-control" required="true">
+                        </div>
+                     
+                        <div class="form-group">
+                            <label>Fees</label>
+                            
+                            <input type="text" name="fees" value="" id="fees" class="form-control" required="true">
+                        </div>
+                     
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
+                        <hr>
+                   
+                    </form> {% endif %}
+                </table>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+<!-- Page Heading -->
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">View Cyber User</h1>
+   
+</div>
+
+<!-- Content Row -->
+<div class="row">
+   
+    <div class="col-xl-10 col-md-12 mb-12">
+        <div class="card border-left-warning shadow h-100 py-10">
+            <div class="card-body">
+                <div>
+                    {% include 'includes/messages.html' %}
+                            
+                                {% for i in user %}
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <tr>
+                                        <th>Entry ID</th>
+                                        <td>{{ i.entryid}}</td>
+                                      </tr>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <td>{{ i.name}}</td>
+                                      </tr>
+                                    
+                                      <tr>
+                                        <th>Email</th>
+                                        <td>{{ i.email}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Mobile Number</th>
+                                        <td>{{ i.mobilenumber}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Address</th>
+                                        <td>{{ i.address}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>ID Proof Number</th>
+                                        <td>{{ i.idproof}}</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Computer Used</th>
+                                        <td>{{ i.computeruse_id.compname}}</td>
+                                      </tr>
+                                     
+                                      <tr>
+                                        <th>Entry Date/Entring Time</th>
+                                        <td>{{ i.created_at}}</td>
+                                      </tr>
+                                      
+                                
+                                      <tr>
+                                        {% if i.remark == '0' %}
+                                        <th>Remark</th>
+                                        <td>Not Updatet Yet</td>
+                                        {% else %}
+                                        <th>Remark</th>
+                                        <td>{{ i.remark}}</td> {% endif %}
+                            </tr>
+                                <tr>
+                                    {% if i.status == '0' %}
+                                    <th>Staus</th>
+                                    <td>Not Updatet Yet</td>
+                                    {% else %}
+                                    <th>Status</th>
+                                    <td>{{ i.status}}</td> {% endif %}
+                                </tr>
+                                    <tr>
+                                    {% if i.fees == '0' %}
+                                    <th>Fee</th>
+                                    <td>Not Updatet Yet</td>
+                                    {% else %}
+                                    <th>Fee</th>
+                                    <td>${{ i.fees}}</td> {% endif %}
+                                </tr>
+                        <tr>
+                                <th>Out Time </th>
+                                <td>{{i.updated_at}}</td>
+                            </tr>
+
+
+
+                            </table>
+                       
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+<!-- Page Heading -->
+{% block content %}
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Cyber User</h1>
+   
+</div>
+
+<!-- Content Row -->
+<div class="row">
+   
+    <div class="col-xl-10 col-md-12 mb-12">
+        <div class="card border-left-warning shadow h-100 py-10">
+            <div class="card-body">
+                <div>
+                    {% include 'includes/messages.html' %}
+                    <form class="user" method="POST" action="{% url 'add_user' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" name="name" value="" class="form-control" id="name" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label>User Address</label>
+                            <textarea name="address" required="true" class="form-control" id="address"></textarea>
+                          
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number</label>
+                           
+                            <input type="text" name="mobilenumber" value="" id="mobilenumber" class="form-control" required="true" maxlength="10" pattern="[0-9]+">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            
+                            <input type="email" name="email" value="" id="email" class="form-control" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label>ID Proof</label>
+                            
+                            <input type="text" name="idproof" value="" id="idproof" class="form-control" required="true">
+                        </div>
+                        <div class="form-group">
+                            <label>Entry ID</label>
+                            
+                            <input type="text" name="entryid" value="" id="entryid" class="form-control" required="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Select Computer</label>
+                           
+                            <select type="text" name="computeruse_id" id="computeruse_id" value="" class="form-control" required="true">
+                                <option value="">Choose Computer</option>
+                                {% for i in computer %}
+           
+                                      <option value="{{i.id}}">{{i.compname}}</option>{% endfor %}
+
+                                </select>
+                        </div>
+                       
+                     
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Add</button>
+                        <hr>
+                   
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
